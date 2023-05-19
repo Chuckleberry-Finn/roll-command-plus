@@ -1,4 +1,4 @@
-local dice = require("diceRolling-roll")
+local dice = require("roll-command-plus-Roll")
 
 local _SendCommandToServer = SendCommandToServer
 function _G.SendCommandToServer(command)
