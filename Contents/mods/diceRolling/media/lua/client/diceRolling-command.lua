@@ -16,7 +16,7 @@ function _G.SendCommandToServer(command)
 
                 local n, s = die:match("([^,]+)d([^,]+)")
                 if n and s then
-                    local total, results = dice.roll(n,s)
+                    local total, results = dice.roll(tonumber(n),tonumber(s))
                     for _,result in pairs(results) do
                         grandResults = grandResults.." + "..result
                     end
