@@ -1,0 +1,30 @@
+version=1
+id=
+title=OrbitTemplate
+description=[h1] OrbitTemplate by your name [/h1]
+description=
+description=
+description=
+description=
+description=
+description=
+description=
+description=[quote=author]
+description=Mod by
+description=[b]your name[/b]
+description=Commissioned by [b]client name[/b]
+description=[/quote]
+description=
+description=
+description=
+description=[h1]Hire Team Orbit for Custom Mod Commission[/h1]
+description=[url=https://discord.gg/2skchrKrDv][img]https://raw.githubusercontent.com/Glytch3r/TeamOrbitAds/main/square_serve.gif[/img][/url]
+description=
+description=[h1]Click the banners[/h1]
+description=[url=https://steamcommunity.com/id/glytch3r/myworkshopfiles/?section=collections&appid=108600]
+description=[img]https://raw.githubusercontent.com/Glytch3r/TeamOrbitAds/main/workshop.png[/img][/url] 
+description=
+description=
+description=
+tags=Build 41;Building;Items;Misc;Multiplayer;Realistic;Texturesh;Military
+visibility=public
