@@ -1,0 +1,4 @@
+IGUI_EN = {
+    IGUI_SUCCESS = "SUCCESS",
+    IGUI_FAILURE = "FAILURE",
+}
