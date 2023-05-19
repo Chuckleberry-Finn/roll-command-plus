@@ -11,7 +11,6 @@ dice.FAILURE = nil
 
 function dice.roll(n,s)
     if not n or not s or n<=0 or s<=0 then return end
-    if getDebug() then print("rolling:", n.."d"..s) end
 
     local results = {}
     local total = 0

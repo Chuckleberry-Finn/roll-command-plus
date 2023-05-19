@@ -2,32 +2,38 @@ local dice = require("diceRolling-roll")
 
 local _SendCommandToServer = SendCommandToServer
 function _G.SendCommandToServer(command)
-    local startsWidthRoll = command:sub(1, #"/roll") == "/roll"
-    if startsWidthRoll then
 
-        local rollCommand = "/roll"
-        local startsWithRoll = command:sub(1, #rollCommand) == rollCommand
+    local rollCommand = "/roll"
+    local startsWithRoll = command:sub(1, #rollCommand) == rollCommand
+
+    if startsWithRoll then
 
         local grandTotal = 0
-        local grandResults = ""
+        local grandResults
+        local rolling
 
         for die in string.gmatch(command, "([^ ]+)") do
             if die ~= rollCommand then
 
+                rolling = (rolling and rolling..", " or "") .. die
+
                 local n, s = die:match("([^,]+)d([^,]+)")
                 if n and s then
                     local total, results = dice.roll(tonumber(n),tonumber(s))
-                    for _,result in pairs(results) do
-                        grandResults = grandResults.." + "..result
+                    for k,result in pairs(results) do
+                        grandResults = (grandResults and grandResults.." + " or "") .. result
                     end
                     grandTotal = grandTotal + total
                 end
             end
         end
 
+        if grandTotal <= 0 then return end
+
+        print("Rolling: "..rolling)
         print("ROLLED: "..grandResults.."  ("..grandTotal..")")
 
-    else
-        _SendCommandToServer(command)
     end
+
+    _SendCommandToServer(command)
 end
