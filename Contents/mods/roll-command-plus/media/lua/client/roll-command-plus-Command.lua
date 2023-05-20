@@ -41,7 +41,7 @@ function _G.SendCommandToServer(command)
 
         print("Rolling: "..rolling)
         print("ROLLED: "..grandResults.."  ("..grandTotal..")")
-
+        return
     end
 
     _SendCommandToServer(command)
