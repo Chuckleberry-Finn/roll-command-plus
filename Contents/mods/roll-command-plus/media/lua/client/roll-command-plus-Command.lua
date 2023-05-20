@@ -28,7 +28,10 @@ function _G.SendCommandToServer(command)
             end
         end
 
-        if grandTotal <= 0 then return end
+        if grandTotal <= 0 then
+            print(getText("IGUI_COMMANDDESC"))
+            return
+        end
 
         print("Rolling: "..rolling)
         print("ROLLED: "..grandResults.."  ("..grandTotal..")")

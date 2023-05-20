@@ -1,4 +1,5 @@
 IGUI_EN = {
     IGUI_SUCCESS = "SUCCESS",
     IGUI_FAILURE = "FAILURE",
+    IGUI_COMMANDDESC = "Roll any number of any sided dice, supports multiple dice in 1 roll. Example: /roll 1d6 2d3 to roll 1 6-sided and 2 3-sided. Also supports simply /roll 6 which is (1d)6.",
 }
