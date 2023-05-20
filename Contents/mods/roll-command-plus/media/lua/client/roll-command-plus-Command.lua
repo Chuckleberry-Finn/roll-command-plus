@@ -18,6 +18,12 @@ function _G.SendCommandToServer(command)
                 rolling = (rolling and rolling..", " or "") .. die
 
                 local n, s = die:match("([^,]+)d([^,]+)")
+
+                if not n and not s then
+                    n = 1
+                    s = tonumber(die) or string.gsub(die, "d", "")
+                end
+
                 if n and s then
                     local total, results = dice.roll(tonumber(n),tonumber(s))
                     for k,result in pairs(results) do
