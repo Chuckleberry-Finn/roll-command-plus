@@ -15,8 +15,6 @@ function _G.SendCommandToServer(command)
         for die in string.gmatch(command, "([^ ]+)") do
             if die ~= rollCommand then
 
-                rolling = (rolling and rolling..", " or "") .. die
-
                 local n, s = die:match("([^,]+)d([^,]+)")
 
                 if not n and not s then
@@ -25,6 +23,8 @@ function _G.SendCommandToServer(command)
                 end
 
                 if n and s then
+                    rolling = (rolling and rolling..", " or "") .. n.."d"..s
+
                     local total, results = dice.roll(tonumber(n),tonumber(s))
                     for k,result in pairs(results) do
                         grandResults = (grandResults and grandResults.." + " or "") .. result
