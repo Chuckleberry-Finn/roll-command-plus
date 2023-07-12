@@ -1,6 +1,8 @@
-id=Roll-Command-Plus
+version=1
+id=3003095456
 title=Roll-Command-Plus
-description=Modified `/roll` command to allow for NdS formatted dice. Example: `/roll 1d6 1d6 1d6` would roll 3 die 6s.
+description=[h2]Modified `/roll` command to allow for NdS formatted dice.
+description=Example: `/roll 1d6 1d6 1d6` would roll 3 die 6s.[/h2]
 description=
 description=
 description=[url=https://ko-fi.com/chuckleberryfinn][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url]
@@ -9,5 +11,5 @@ description=[url=https://discord.gg/SReMnbV4V7][img]https://raw.githubuserconten
 description=
 description=
 description=[h3]Copyright 2023 Chuckleberry Finn. This item is not authorized for posting on Steam, except under the Steam account named Chuckleberry Finn.[/h3]
-tags=Build 41;Misc;Multiplayer;
+tags=Build 41;Misc;Multiplayer;Silly/Fun
 visibility=public
