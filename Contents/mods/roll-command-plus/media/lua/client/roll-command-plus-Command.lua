@@ -11,7 +11,7 @@ function _G.SendCommandToServer(command)
         local grandTotal = 0
         local grandResults
         local rolling
-
+        local dieCount = 0
         for die in string.gmatch(command, "([^ ]+)") do
             if die ~= rollCommand then
 
@@ -23,6 +23,7 @@ function _G.SendCommandToServer(command)
                 end
 
                 if n and s then
+                    dieCount = dieCount+1
                     rolling = (rolling and rolling..", " or "") .. n.."d"..s
 
                     local total, results = dice.roll(tonumber(n),tonumber(s))
@@ -35,12 +36,15 @@ function _G.SendCommandToServer(command)
         end
 
         if grandTotal <= 0 then
-            print(getText("IGUI_COMMANDDESC"))
+            ---@type IsoGameCharacter|IsoPlayer
+            --local player = getPlayer()
+            --player:addLineChatElement(getText("IGUI_COMMANDDESC"), 0, 0.5, 1, UIFont.Dialogue, 0, "default", false, false, false, false, false, true)
             return
         end
 
-        print("Rolling: "..rolling)
-        print("ROLLED: "..grandResults.."  ("..grandTotal..")")
+        local printOut = "Rolling: "..rolling.."  Results: "..grandResults
+        if dieCount > 1 then printOut = printOut.."  ("..grandTotal..")" end
+        processGeneralMessage(printOut)
         return
     end
 

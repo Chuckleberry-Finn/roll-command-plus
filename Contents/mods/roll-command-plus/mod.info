@@ -1,9 +1,7 @@
 id=Roll-Command-Plus
 name=Roll-Command-Plus
-description=This Mod is Commissioned to Team Orbit. You are not allowed to reupload this mod.
+description=Modified `/roll` command to allow for NdS formatted dice. Example: `/roll 1d6 1d6 1d6` would roll 3 die 6s.
 poster=poster.png
-authors=TeamOrbit
-icon=icon.png
 tags=Build 41
 versionMin=41.0
 

@@ -3,20 +3,11 @@ title=Roll-Command-Plus
 description=Modified `/roll` command to allow for NdS formatted dice. Example: `/roll 1d6 1d6 1d6` would roll 3 die 6s.
 description=
 description=
-description=[quote]
-description=Commissioned by [b]MagicCat[/b]
-description=[/quote]
+description=[url=https://ko-fi.com/chuckleberryfinn][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url]
+description=
+description=[url=https://discord.gg/SReMnbV4V7][img]https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/main/PZmodCommBanner1.png[/img][/url]
 description=
 description=
-description=
-description=[h1]Hire Team Orbit for Custom Mod Commission[/h1]
-description=[url=https://discord.gg/2skchrKrDv][img]https://raw.githubusercontent.com/Glytch3r/TeamOrbitAds/main/square_serve.gif[/img][/url]
-description=
-description=[h1]Click the banners[/h1]
-description=[url=https://steamcommunity.com/id/glytch3r/myworkshopfiles/?section=collections&appid=108600]
-description=[img]https://raw.githubusercontent.com/Glytch3r/TeamOrbitAds/main/workshop.png[/img][/url] 
-description=
-description=
-description=
+description=[h3]Copyright 2023 Chuckleberry Finn. This item is not authorized for posting on Steam, except under the Steam account named Chuckleberry Finn.[/h3]
 tags=Build 41;Misc;Multiplayer;
 visibility=public
