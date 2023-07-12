@@ -12,6 +12,9 @@ function _G.SendCommandToServer(command)
         local grandResults
         local rolling
         local dieCount = 0
+
+        if command == rollCommand then command = command.." 6" end
+
         for die in string.gmatch(command, "([^ ]+)") do
             if die ~= rollCommand then
 
