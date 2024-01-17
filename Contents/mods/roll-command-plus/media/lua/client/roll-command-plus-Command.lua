@@ -4,6 +4,9 @@ local _SendCommandToServer = SendCommandToServer
 function _G.SendCommandToServer(command)
 
     local rollCommand = "/roll"
+
+    if string.find(command, "/rollall") then rollCommand = "/rollall" end
+
     local startsWithRoll = command:sub(1, #rollCommand) == rollCommand
 
     if startsWithRoll then
@@ -26,7 +29,7 @@ function _G.SendCommandToServer(command)
                 end
 
                 if n and s then
-                    dieCount = dieCount+1
+                    dieCount = dieCount+n
                     rolling = (rolling and rolling..", " or "") .. n.."d"..s
 
                     local total, results = dice.roll(tonumber(n),tonumber(s))
@@ -47,7 +50,13 @@ function _G.SendCommandToServer(command)
 
         local printOut = "Rolling: "..rolling.."  Results: "..grandResults
         if dieCount > 1 then printOut = printOut.."  ("..grandTotal..")" end
-        processGeneralMessage(printOut)
+
+        if rollCommand == "/rollall" then
+            processGeneralMessage(printOut)
+        else
+            processSayMessage(printOut)
+        end
+
         return
     end
 
