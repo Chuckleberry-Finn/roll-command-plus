@@ -53,6 +53,11 @@ function _G.SendCommandToServer(command)
         local printOut = "Rolling: "..rolling..", Results: "..grandResults
         if dieCount > 1 then printOut = printOut.." = ("..grandTotal..")" end
 
+        --roleplaychat patch
+
+        local activeModIDs = getActivatedMods()
+        if activeModIDs:contains("roleplaychat") then printOut = "["..getPlayer():getUsername().."] " end
+
         if rollCommand == "/rollall" then
             processGeneralMessage(printOut)
         else
