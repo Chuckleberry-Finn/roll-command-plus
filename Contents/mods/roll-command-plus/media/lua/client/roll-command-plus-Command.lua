@@ -3,10 +3,10 @@ local dice = require("roll-command-plus-Roll")
 local _SendCommandToServer = SendCommandToServer
 function _G.SendCommandToServer(command)
 
-    local rollCommand = "/roll "
+    local rollCommand = "/roll"
 
-    if string.find(command, "/rollall ") then rollCommand = "/rollall " end
-    if string.find(command, "/rollyell ") then rollCommand = "/rollyell " end
+    if string.find(command, "/rollall") then rollCommand = "/rollall" end
+    if string.find(command, "/rollyell") then rollCommand = "/rollyell" end
 
     local startsWithRoll = command:sub(1, #rollCommand) == rollCommand
 
