@@ -3,9 +3,10 @@ local dice = require("roll-command-plus-Roll")
 local _SendCommandToServer = SendCommandToServer
 function _G.SendCommandToServer(command)
 
-    local rollCommand = "/roll"
+    local rollCommand = "/roll "
 
-    if string.find(command, "/rollall") then rollCommand = "/rollall" end
+    if string.find(command, "/rollall ") then rollCommand = "/rollall " end
+    if string.find(command, "/rollyell ") then rollCommand = "/rollyell " end
 
     local startsWithRoll = command:sub(1, #rollCommand) == rollCommand
 
@@ -54,12 +55,13 @@ function _G.SendCommandToServer(command)
         if dieCount > 1 then printOut = printOut.." = ("..grandTotal..")" end
 
         --roleplaychat patch
-
-        local activeModIDs = getActivatedMods()
-        if activeModIDs:contains("roleplaychat") then printOut = "["..getPlayer():getUsername().."] " end
+        local rpChat = getActivatedMods():contains("roleplaychat")
+        if rpChat then printOut = "["..getPlayer():getDescriptor():getForename().."]: "..printOut end
 
         if rollCommand == "/rollall" then
             processGeneralMessage(printOut)
+        elseif rollCommand == "/rollyell" then
+            processShoutMessage(printOut)
         else
             processSayMessage(printOut)
         end
