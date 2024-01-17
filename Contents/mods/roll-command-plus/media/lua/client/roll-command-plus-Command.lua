@@ -33,10 +33,12 @@ function _G.SendCommandToServer(command)
                     rolling = (rolling and rolling..", " or "") .. n.."d"..s
 
                     local total, results = dice.roll(tonumber(n),tonumber(s))
-                    for k,result in pairs(results) do
-                        grandResults = (grandResults and grandResults.." + " or "") .. result
+                    if total and results and type(results)=="table" then
+                        for k,result in pairs(results) do
+                            grandResults = (grandResults and grandResults.." + " or "") .. result
+                        end
+                        grandTotal = grandTotal + total
                     end
-                    grandTotal = grandTotal + total
                 end
             end
         end
@@ -48,8 +50,8 @@ function _G.SendCommandToServer(command)
             return
         end
 
-        local printOut = "Rolling: "..rolling.."  Results: "..grandResults
-        if dieCount > 1 then printOut = printOut.."  ("..grandTotal..")" end
+        local printOut = "Rolling: "..rolling..", Results: "..grandResults
+        if dieCount > 1 then printOut = printOut.." = ("..grandTotal..")" end
 
         if rollCommand == "/rollall" then
             processGeneralMessage(printOut)
