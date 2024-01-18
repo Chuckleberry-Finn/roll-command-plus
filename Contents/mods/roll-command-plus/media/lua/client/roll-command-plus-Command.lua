@@ -3,21 +3,24 @@ local dice = require("roll-command-plus-Roll")
 local _SendCommandToServer = SendCommandToServer
 function _G.SendCommandToServer(command)
 
-    local rollCommand = "/roll"
-
-    if string.find(command, "/rollall") then rollCommand = "/rollall" end
-    if string.find(command, "/rollyell") then rollCommand = "/rollyell" end
-
-    local startsWithRoll = command:sub(1, #rollCommand) == rollCommand
-
+    local rollTextBase = "/roll"
+    local startsWithRoll = command:sub(1, #rollTextBase) == rollTextBase
     if startsWithRoll then
+
+        local rollCommand = "/roll "
+
+        if string.find(command, "/rollall ") then rollCommand = "/rollall " end
+        if string.find(command, "/rollyell ") then rollCommand = "/rollyell " end
 
         local grandTotal = 0
         local grandResults
         local rolling
         local dieCount = 0
 
-        if command == rollCommand then command = command.." 6" end
+        command = command:gsub(rollCommand, "")
+        command = command:gsub('^%s*(.-)%s*$', '%1')
+
+        if command == "" or command==rollTextBase then command = "1d6" end
 
         for die in string.gmatch(command, "([^ ]+)") do
             if die ~= rollCommand then
@@ -43,14 +46,8 @@ function _G.SendCommandToServer(command)
                 end
             end
         end
-
-        if grandTotal <= 0 then
-            ---@type IsoGameCharacter|IsoPlayer
-            --local player = getPlayer()
-            --player:addLineChatElement(getText("IGUI_COMMANDDESC"), 0, 0.5, 1, UIFont.Dialogue, 0, "default", false, false, false, false, false, true)
-            return
-        end
-
+        
+        if not grandResults then return end
         local printOut = "Rolling: "..rolling..", Results: "..grandResults
         if dieCount > 1 then printOut = printOut.." = ("..grandTotal..")" end
 
