@@ -69,3 +69,74 @@ function _G.SendCommandToServer(command)
         processSayMessage(printOut)
     end
 end
+
+--OmiChat patch
+if getActivatedMods():contains("OmiChat") then
+    local OmiChat = require("OmiChat/Client")
+
+    local function sendRoll(stream, command, name)
+        --fallback to normal handling if no stream is found
+        if not stream then
+            SendCommandToServer(name .. command)
+            return
+        end
+
+        if command:trim() == '' then
+            command = '1d6'
+        end
+
+        local total, results, rolls = doRolls(command)
+        if #results == 0 then
+            SendCommandToServer(name .. command)
+            return
+        end
+
+        --use the 'N-sided die' message for simple rolls
+        local sides
+        if #rolls == 1 and rolls[1]:match('^d%d+$') then
+            sides = tonumber(rolls[1]:match('^d(%d+)$'))
+        end
+
+        OmiChat.chat.send({
+            text = '',
+            stream = stream,
+            allowEmpty = true,
+            context = {
+                type = 'omichat.roll',
+                roll = total,
+                sides = sides,
+                diceExpression = not sides and table.concat(rolls, ' + ') or nil,
+            }
+        })
+    end
+
+    OmiChat.extension.addCommand(OmiChat.CommandStream:new({
+        name = 'rollall',
+        command = '/rollall ',
+        onUse = function(ctx)
+            -- use first global stream
+            local stream = OmiChat.streams.firstChatStreamOfType('general')
+            sendRoll(stream, ctx.text, '/rollall ')
+        end
+    }))
+
+    OmiChat.extension.addCommand(OmiChat.CommandStream:new({
+        name = 'rollyell',
+        command = '/rollyell ',
+        onUse = function(ctx)
+            -- try to get command like /meloud, use any loud stream if not found
+            local stream
+            local candidates = OmiChat.streams.getChatStreamsWithTag('Action', { 'NoName' })
+            for i = 1, #candidates do
+                local candidateStream = candidates[i]
+                if candidateStream:hasTag('Loud') then
+                    stream = candidateStream
+                    break
+                end
+            end
+
+            stream = stream or OmiChat.streams.firstChatStreamWithTag('Loud')
+            sendRoll(stream, ctx.text, '/rollyell ')
+        end
+    }))
+end
