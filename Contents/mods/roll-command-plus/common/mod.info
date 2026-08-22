@@ -1,0 +1,9 @@
+id=Roll-Command-Plus
+name=Roll-Command-Plus
+description=Modified `/roll` command to allow for NdS formatted dice. Example: `/roll 1d6 1d6 1d6` would roll 3 die 6s.
+poster=poster.png
+require=\ChuckleberryFinnAlertSystem,\errorMagnifier,
+author=Chuckleberry Finn
+icon=icon.png
+versionMin=42.0
+
