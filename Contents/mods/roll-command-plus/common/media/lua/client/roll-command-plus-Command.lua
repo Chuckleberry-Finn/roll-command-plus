@@ -27,7 +27,7 @@ function _G.SendCommandToServer(command)
 
                 local n, s = die:match("([^,]+)d([^,]+)")
 
-                if not n and not s then
+                if not n and not s and die ~= '+' then
                     n = 1
                     s = tonumber(die) or string.gsub(die, "d", "")
                 end
@@ -55,9 +55,9 @@ function _G.SendCommandToServer(command)
         local rpChat = getActivatedMods():contains("roleplaychat")
         if rpChat then printOut = "["..getPlayer():getDescriptor():getForename().."]: "..printOut end
 
-        if rollCommand == "/rollall" then
+        if rollCommand == "/rollall " then
             processGeneralMessage(printOut)
-        elseif rollCommand == "/rollyell" then
+        elseif rollCommand == "/rollyell " then
             processShoutMessage(printOut)
         else
             processSayMessage(printOut)
